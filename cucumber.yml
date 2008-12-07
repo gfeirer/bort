@@ -1,4 +1,4 @@
 default: --profile webrat
 webrat: --require features/support/webrat_env.rb --require features/step_definitions --language es features/features_plain
 selenium: --require features/support/selenium_env.rb --require features/step_definitions --language es features/features_with_ajax
-all_with_selenium: --require features/support/selenium_env.rb --require features/step_definitions --language es features/features_*
+all_with_selenium: --require features/support/selenium_env.rb --require features/step_definitions --language es features/features_plain features/features_with_ajax
