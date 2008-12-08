@@ -2,7 +2,7 @@
 # http://github.com/brynary/webrat
 
 Cuando /^pulso el botón "(.*)"$/ do |button|
-  clicks_button(button)
+  click_button(button)
 end
 
 Cuando /^pulso el (enlace|enlace-ajax|enlace-con-efectos) (.+)$/i do
@@ -12,7 +12,7 @@ Cuando /^pulso el (enlace|enlace-ajax|enlace-con-efectos) (.+)$/i do
  when 'enlace-ajax' then :ajax
  else :page
  end
- clicks_link(unquote(enlace), :wait => wait_for)
+ click_link(unquote(enlace), :wait => wait_for)
 end
 
 def unquote(str)
@@ -20,7 +20,7 @@ def unquote(str)
 end
 
 Cuando /^completo "(.*)" con "(.*)"$/ do |field, value|
-  fills_in(field, :with => value) 
+  fill_in(field, :with => value) 
 end
 
 Cuando /^selecciono "(.*)" de "(.*)"$/ do |field, value|
@@ -44,7 +44,7 @@ Cuando /^adjunto el fichero "(.*)" a "(.*)" $/ do |path, field|
 end
 
 Cuando /^visito (.*)$/ do |page|
-  visits case page
+  visit case page
   when "la portada"
     "/"
   else
@@ -54,9 +54,11 @@ Cuando /^visito (.*)$/ do |page|
 end
 
 Entonces /^debería ver "(.*)"$/ do |text|
-  response_body.should =~ /#{text}/m
+  response.should contain(text)
+  #response.body.should =~ /#{text}/m
 end
 
 Entonces /^no debería ver "(.*)"$/ do |text|
-  response_body.should_not =~ /#{text}/m
+  response.should_not contain(text)
+  #response.body.should_not =~ /#{text}/m
 end
