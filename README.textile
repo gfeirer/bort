@@ -2,15 +2,19 @@
 
 h1. Bort
 
+This is a modified version of "Bort":http://github.com/fudgestudios/bort/tree to suit our needs.
+
+Original description:
 Bort is a base Rails 2.2 application that makes creating new projects easier and faster. Bort is developed and maintained by "Fudge Studios":http://www.fudgestudios.com, "Jim Neath":http://jimneath.org and "Matt Hall":http://matthall.wordpress.com
 
 If you have any suggestions for improvements then feel free to leave a request on "User Voice":http://bort.uservoice.com
 
 h2. Install
 
-* Download and unzip Bort
+* Fork this project when starting a new one. In this way you will be able to merge in changes made to bort later on.
 * Edit the database.yml and the settings.yml files
 * Changed the default password in the bort migration
+* Change the session_key and secret token in config/environment.rb. 
 * Edit the REST_AUTH_SITE_KEY in each of the environment files
 * Rake db:migrate
 * Have a brew and celebrate
@@ -93,3 +97,4 @@ h2. Misc
 h2. Credits
 
 Bort put together by people at "Fudge":http://www.fudgestudios.com/ 
+This fork has some additional work has been done by "Aentos":http://www.aentos.com/
