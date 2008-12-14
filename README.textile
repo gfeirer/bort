@@ -13,9 +13,14 @@ h2. Install
 
 * Fork this project when starting a new one. In this way you will be able to merge in changes made to bort later on.
 * Edit the database.yml and the settings.yml files
-* Changed the default password in the bort migration
+* Change the default password in the bort migration
 * Change the session_key and secret token in config/environment.rb. 
 * Edit the REST_AUTH_SITE_KEY in each of the environment files
+* Install the required gems:
+** [sudo] gem install rspec rspec-rails cucumber
+** [sudo] gem install term-ansicolor treetop diff-lcs nokogiri (To install nokogiri you will need to have the libraries libxml-dev libxslt-dev)
+** [sudo] gem install selenium-client
+** [sudo] gem install thoughtbot-factory_girl -s http://gems.github.com
 * Rake db:migrate
 * Have a brew and celebrate
 
