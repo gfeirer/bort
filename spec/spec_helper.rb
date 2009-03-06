@@ -47,4 +47,28 @@ Spec::Runner.configure do |config|
   # == Notes
   # 
   # For more information take a look at Spec::Example::Configuration and Spec::Runner
+  def login_as_no_role
+    @current_user = mock_model(User, :id => 5, :state => 'active')
+    controller.stub!(:current_user).and_return(@current_user)
+    @current_user.should_receive(:has_role?).with(any_args()).and_return(false)
+  end
+
+  def login_as_admin
+    @current_user = mock_model(User, :id => 1, :state => 'active', :roles => [Role.find_by_name("admin")])
+    controller.stub!(:current_user).and_return(@current_user)
+    @current_user.should_receive(:has_role?).at_least(:once).and_return(true)
+  end
+
+#  def login_as_directivo
+#    @current_user = mock_model(User, :id => 4, :state => 'active', :roles => [Role.create(:name => "directivo")])
+#    controller.stub!(:current_user).and_return(@current_user)
+#    @current_user.should_receive(:has_role?) do |role|
+#      if role == "directivo"
+#        true
+#      else
+#        false
+#      end
+#    end.at_least(:once)
+#  end
+
 end

@@ -3,25 +3,6 @@ class UsersController < ApplicationController
   skip_before_filter :authenticated, :only => :activate
   require_role "admin", :only => [:new, :create, :suspend, :index, :activate_from_admin]
 
-  def self.custom_actions_options
-    {
-      :register => {:name => "Registrar"},
-      :register_openid => {:name => "Registrar openid"},
-      :activate => {:name => "Activar"},
-      :suspend => {:name => "Desactivar"},
-      :delete => {:name => "Borrar"},
-      :unsuspend => {:name => "Reactivar"},
-      :show => {:hide => true},
-      :destroy => {:hide => true}
-    }
-  end
-
-  def self.custom_actions_order
-    [
-      :suspend
-    ]
-  end
-
   def index
     @users = User.find(:all, :conditions => "login <> 'admin' and state <> 'deleted'")
 

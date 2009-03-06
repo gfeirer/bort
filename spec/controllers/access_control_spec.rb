@@ -4,6 +4,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 # A test controller with and without access controls
 #
 class AccessControlTestController < ApplicationController
+  skip_before_filter :authenticated
   before_filter :login_required, :only => :login_is_required
   def login_is_required
     respond_to do |format|
@@ -66,11 +67,10 @@ describe AccessControlTestController do
           elsif (login_reqd_status == :login_is_required && logged_in_status == :i_am_not_logged_in)
             if ['html', ''].include? format
               it "redirects me to the log in page" do
-                response.should redirect_to('/session/new')
+                response.should redirect_to(root_path)
               end
             else
-              it "returns 'Access denied' and a 406 (Access Denied) status code" do
-                response.should have_text("HTTP Basic: Access denied.\n")
+              it "returns 'Found' and a 401 status code" do
                 response.code.to_s.should == '401'
               end
             end
