@@ -1,33 +1,55 @@
-<%= title "Login", :h2 %>
-<% form_tag session_path do %>
-	<fieldset>
-		<legend>Your Details</legend>
-		<ol>
-			<li>
-				<%= label_tag 'login', 'Username' %>
-				<%= text_field_tag 'login', @login %>
-			</li>
-			<li>
-				<%= label_tag 'password' %>
-				<%= password_field_tag 'password', nil %>
-			</li>
-			<li>
-				<%= label_tag 'remember_me', 'Remember me' %>
-				<%= check_box_tag 'remember_me', '1', @remember_me %>
-			</li>
-		</ol>
-	</fieldset>
-	<fieldset>
-		<legend>Login with OpenID</legend>
-		<ol>
-			<li>
-				<%= label_tag 'openid_url', 'OpenID URL' %>
-				<%= text_field_tag 'openid_url' %>
-			</li>
-		</ol>
-	</fieldset>
-	<div class="buttons">
-		<%= submit_tag 'Login' %>
-		<%= link_to 'Forgotten Password', forgot_password_path %>
-	</div>
+<% form_tag session_path, :class => 'form login' do %>
+
+<%= title "Inicio de sesión" %>
+
+<div class="group">
+  <div class="left">
+		<%= label_tag 'login', 'Usuario', :class => 'label right' %>
+  </div>
+  <div class="right">
+		<%= text_field_tag 'login', @login, {:onblur => "trim(document.forms[0].login)", :class => 'text_field'} %>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="group">
+  <div class="left">
+		<%= label_tag 'password', 'Contraseña', :class => 'label right' %>
+  </div>
+  <div class="right">
+		<%= password_field_tag 'password', nil, :class => 'text_field' %>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="group">
+  <div class="left">
+		<%= label_tag 'remember_me', 'Recordarme en este equipo', :class => 'label right' %>
+  </div>
+  <div class="right">
+		<%= check_box_tag 'remember_me', '1', @remember_me, :class => 'checkbox' %>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<h3>Inicio de sesión con OpenID</h3>
+
+<div class="group">
+  <div class="left">
+		<%= label_tag 'openid_url', 'OpenID URL', :class => 'label right' %>
+  </div>
+  <div class="right">
+		<%= text_field_tag 'openid_url', nil, :class => 'text_field' %>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="group navform">
+  <div class="right">
+		<%= submit_tag 'Iniciar sesión', :class => 'button' %>&nbsp;
+		<%= link_to '¿Olvidó su contraseña?', forgot_password_path %>
+  </div>
+  <div class="clear"></div>
+</div>
+
 <% end -%>
