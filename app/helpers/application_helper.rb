@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include ActionsLinksHelper
+  include JqueryDatepickerHelper
   
   # Sets the page title and outputs title if container is passed in.
   # eg. <%= title('Hello World', :h2) %> will return the following:

@@ -1,0 +1,21 @@
+<h1>Listado de <%= plural_name %></h1>
+
+<table class="table">
+  <tr>
+    <%=  ScaffoldGenerator.index_th_attributes attributes, plural_name, "    " %>
+    <th class="last" />
+  </tr>
+
+<%% for <%= singular_name %> in @<%= plural_name %> %>
+  <tr>
+<% for attribute in attributes -%>
+    <td><%%=h <%= singular_name %>.<%= attribute.name %> %></td>
+<% end -%>
+    <td class="last"><%%= formatted_option_links(<%= controller_class_name %>Controller, <%= singular_name %>, {:destroy => {:options => {:order => params[:order], :page => params[:page]}}}) %></td>
+  </tr>
+<%% end %>
+</table>
+
+<%%= will_paginate(@<%= plural_name %>, :prev_label => "Anteriores", :next_label => "Siguientes") rescue "" %>
+
+<%%= link_to 'Nuevo <%= singular_name %>', new_<%= singular_name %>_path %>

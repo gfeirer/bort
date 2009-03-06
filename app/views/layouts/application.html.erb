@@ -10,24 +10,90 @@
 		<meta name="resource-type" content="document" />
 		<meta name="MSSmartTagsPreventParsing" content="true" />
 		<%= stylesheet_link_tag 'base' %>
+		<%= stylesheet_link_tag 'themes/default/style.css' %>
 		<%= javascript_include_tag :defaults %>
+        <%= stylesheet_link_tag 'ui.all' %>
+        <%= javascript_include_tag 'jquery-1.3.1' %>
+        <%= javascript_include_tag 'jquery-ui-personalized-1.6rc6' %>
+        <%= javascript_include_tag 'ui.datepicker-es' %>
 	</head>
 	<body>
 		<div id="container">
 			<div id="header">
-				<ul>
-					<% if logged_in? %>
-					<li><%= link_to 'Logout', logout_path %></li>
-					<% else %>
-					<li><%= link_to 'Login', login_path %></li>
-					<li><%= link_to 'Signup', signup_path %></li>
-					<% end %>
-				</ul>
-			</div>
-			<div id="content">
-				<%= flash_messages %>
-				<%= yield :layout %>
-			</div>
-		</div>
+        <h1>
+          <%= link_to "BORT - Name of the project", "/" %>
+        </h1>
+        
+        <div id="user-navigation">
+          <ul>
+            <% if logged_in? %>
+              <li><%= link_to 'Perfil', edit_user_path(current_user) if current_user %></li>
+              <li><%= link_to 'Logout', logout_path %></li>
+            <% else %>
+              <li><%= link_to 'Login', login_path %></li>
+            <% end %>
+          </ul>
+          <div class="clear"></div>
+        </div> <!-- user-navigation -->
+
+			  <div id="main-navigation">
+      		<% if logged_in? %>
+					  <%= menu_builder(@active_controller) %>
+				  <% end %>
+          <div class="clear"></div>
+        </div> <!-- main-navigation -->
+      </div> <!-- header -->
+
+			<div id="wrapper">
+       <div id="main"> 
+          <div id="block-forms" class="block">
+            <div class="content">
+              <div class="inner">
+                <div class="flash">
+                  <% if flash[:error] %>
+                    <div class="message error">
+                      <p><%= flash[:error] %></p>
+                    </div>
+                  <% end %>
+                  <% if flash[:warning] %>
+                    <div class="message warning">
+                      <p><%= flash[:warning] %></p>
+                    </div>
+                  <% end %>
+                  <% if flash[:notice] %>
+                    <div class="message notice">
+                      <p><%= flash[:notice] %></p>
+                    </div>
+                  <% end %>
+                </div> <!-- flash -->
+
+                <%= yield :layout %>
+
+              </div> <!-- inner -->
+            </div> <!-- content -->
+          </div> <!-- block-forms -->
+
+
+          <div id="footer">
+            <div class="block">
+              <p>Copyright © 2009 AENTOS CONSULTING, S.L.</p>
+            </div>
+          </div>
+
+        </div> <!-- main -->
+
+        <div id="sidebar">
+          <div class="block">
+            <h3>Sidebar</h3>
+            <div class="content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="clear" />
+        
+			</div> <!-- wrapper -->
+		</div> <!-- container -->
 	</body>
 </html>

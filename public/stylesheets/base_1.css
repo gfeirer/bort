@@ -176,10 +176,6 @@ body {
   text-decoration: none;  
 }
 
-.pagination {
-  margin-bottom: 30px;
-}
-
 /* tables */
 .table {
   width: 100%;
@@ -329,26 +325,4 @@ ul.list li .item .avatar {
   padding: 10px 20px;
 }
 
-/* showing attributes */
 
-.show_group {
-padding-bottom:2px;
-font-size:1.2em;
-margin:0;
-padding:1px 0px 30px;
-}
-
-.show_group .attribute {
-font-weight:bold;
-}
-
-.show_group .value {
-
-}
-
-/* table header links */
-
-table th a:link, table th a:active, table th a:hover, table th a:visited {
-  text-decoration: none;
-  color: #BBBBBB;
-}
