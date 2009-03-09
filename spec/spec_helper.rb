@@ -71,4 +71,8 @@ Spec::Runner.configure do |config|
 #    end.at_least(:once)
 #  end
 
+  def authenticated
+    @current_user = mock_model(User, :id => 1, :state => 'active', :roles => [])
+    controller.stub!(:current_user).and_return(@current_user)
+  end
 end

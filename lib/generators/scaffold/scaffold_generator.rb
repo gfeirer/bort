@@ -16,15 +16,11 @@ class ScaffoldGenerator < Rails::Generator::NamedBase
   def self.index_th_attributes(attributes, plural_name, spaces)
     s = []
     attributes.each_index do |i|
-      if i == 0
-        s[i] = spaces + '<th class="first">'
-      else
-        s[i] = '<th>'
-      end
-#      s[i] += attributes[i].column.human_name
-      s[i] += '<%= link_to "' + attributes[i].column.human_name  + '", ' + plural_name + '_path(:order => ((params[:order] == "' + attributes[i].column.name + '" && "' + attributes[i].column.name + ' DESC") || "' + attributes[i].column.name + '")) %>'
-      s[i] += '</th>'
+      s[i] = spaces + '<%= th_link("'+attributes[i].column.human_name+'", "'+attributes[i].column.name+'", params[:order]'
+      s[i] += ', :class => "first"' if i == 0
+      s[i] += ') %>'
     end
+    s << spaces + '<%= th_link(nil, nil, nil, :class => "last") %>'
     s.join("\n")
   end
 

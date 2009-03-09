@@ -2,8 +2,7 @@
 
 <table class="table">
   <tr>
-    <%=  ScaffoldGenerator.index_th_attributes attributes, plural_name, "    " %>
-    <th class="last" />
+<%=  ScaffoldGenerator.index_th_attributes attributes, plural_name, "    " %>
   </tr>
 
 <%% for <%= singular_name %> in @<%= plural_name %> %>
@@ -16,6 +15,11 @@
 <%% end %>
 </table>
 
-<%%= will_paginate(@<%= plural_name %>, :prev_label => "Anteriores", :next_label => "Siguientes") rescue "" %>
+<div class="actions-bar">
+  <div class="actions">
+    <%%= link_to 'Nuevo <%= singular_name %>', new_<%= singular_name %>_path %>
+  </div>
+    <%%= will_paginate(@<%= plural_name %>, :prev_label => "Anteriores", :next_label => "Siguientes") rescue "" %>
+  <div class="clear"></div>
+</div>
 
-<%%= link_to 'Nuevo <%= singular_name %>', new_<%= singular_name %>_path %>

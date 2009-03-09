@@ -11,18 +11,18 @@ class <%= controller_class_name %>Controller < ApplicationController
   # GET /<%= table_name %>
   # GET /<%= table_name %>.xml
   def index
-    if request.xml_http_request? || request.env["HTTP_ACCEPT"] == "application/xml"
-      @<%= table_name %> = <%= class_name %>.find(:all)
-    else
-      @<%= table_name %> = <%= class_name %>.paginate :page => params[:page], :order => params[:order]
-      if @<%= table_name %>.empty? && !params[:page].blank? && params[:page].to_i > 1
-        @<%= table_name %> = <%= class_name %>.paginate :page => params[:page].to_i - 1, :order => params[:order]
-      end
-    end
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @<%= table_name %> }
+      format.html {
+        @<%= table_name %> = <%= class_name %>.paginate :page => params[:page], :order => params[:order]
+        if @<%= table_name %>.empty? && !params[:page].blank? && params[:page].to_i > 1
+          @<%= table_name %> = <%= class_name %>.paginate :page => params[:page].to_i - 1, :order => params[:order]
+        end
+        # index.html.erb
+      }
+      format.xml  { 
+        @<%= table_name %> = <%= class_name %>.find(:all)
+        render :xml => @<%= table_name %>
+      }
     end
   end
 
@@ -94,7 +94,10 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= file_name %>.destroy
 
     respond_to do |format|
-      format.html { redirect_to(<%= table_name %>_url(:page => params[:page], :order => params[:order])) }
+      format.html { 
+        flash[:notice] = '<%= class_name %> borrado correctamente.'
+        redirect_to(<%= table_name %>_url(:page => params[:page], :order => params[:order]))
+        }
       format.xml  { head :ok }
     end
   end
