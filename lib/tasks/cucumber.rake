@@ -29,12 +29,15 @@ namespace :features do
       t.feature_pattern = "features/plain/*.feature"
       t.step_pattern = "features/step_definitions/*.rb"
     end
-    Cucumber::Rake::Task.new(:selenium) do |t|
-      t.binary = "xvfb-run cucumber"
-      t.cucumber_opts = "--language es --format pretty --out=#{out}/features_enhanced.txt --format html --out=#{out}/features_enhanced.html --require features/support/env.rb --require features/support/enhanced.rb"
-      t.feature_pattern = "features/enhanced/*.feature"
-      t.step_pattern = "features/step_definitions/*.rb"
+#    Cucumber::Rake::Task.new(:selenium) do |t|
+#      t.cucumber_opts = "--language es --format pretty --out=#{out}/features_enhanced.txt --format html --out=#{out}/features_enhanced.html --require features/support/env.rb --require features/support/enhanced.rb"
+#      t.feature_pattern = "features/enhanced/*.feature"
+#      t.step_pattern = "features/step_definitions/*.rb"
+#    end
+    task :selenium do
+      system "xvfb-run cucumber -p selenium"
     end
+
     task :all do
       Rake::Task["features:cruise:webrat"].invoke
       Rake::Task["features:cruise:selenium"].invoke
