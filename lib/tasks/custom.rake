@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(rspec_base) if File.exist?(rspec_base)
 require 'spec/rake/spectask'
 require 'spec/rake/verify_rcov'
 
-CRUISE_TASKS = %w( db:migrate restart_passenger setup_test_env db:drop db:create db:migrate test spec features:cruise )
+CRUISE_TASKS = %w( db:migrate restart_passenger db:test:prepare test spec features:cruise )
 RCOV_THRESHOLD = 90
 
 desc "Task for cruise Control"
