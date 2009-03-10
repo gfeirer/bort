@@ -26,7 +26,7 @@ module ActionsLinksSystem
       {
         :show => {:name =>"Mostrar"},
         :edit => {:name => "Editar"},
-        :destroy => {:name => "Borrar", :html_options => {:method => :delete, :confirm => 'Estás seguro?'}}
+        :destroy => {:name => "Borrar", :html_options => {:method => :delete, :confirm => '¿Está seguro que desea borrar?'}}
       }
     end
 
