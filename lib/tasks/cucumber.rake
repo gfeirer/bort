@@ -9,13 +9,13 @@ mkdir_p out unless File.directory? out if out
 
 namespace :features do
   Cucumber::Rake::Task.new(:webrat) do |t|
-    t.cucumber_opts = "--language es --format pretty --require features/support/webrat_env.rb"
-    t.feature_pattern = "features/features_plain/*.feature"
+    t.cucumber_opts = "--language es --format pretty --require features/support/env.rb --require features/support/plain.rb"
+    t.feature_pattern = "features/plain/*.feature"
     t.step_pattern = "features/step_definitions/*.rb"
   end
   Cucumber::Rake::Task.new(:selenium) do |t|
-    t.cucumber_opts = "--language es --format pretty --require features/support/selenium_env.rb"
-    t.feature_pattern = "features/features_with_ajax/*.feature"
+    t.cucumber_opts = "--language es --format pretty --require features/support/enhanced.rb"
+    t.feature_pattern = "features/enhanced/*.feature"
     t.step_pattern = "features/step_definitions/*.rb"
   end
   task :all do
@@ -25,13 +25,13 @@ namespace :features do
   task :cruise => 'features:cruise:all'
   namespace :cruise do
     Cucumber::Rake::Task.new(:webrat) do |t|
-      t.cucumber_opts = "--language es --format pretty --out=#{out}/features_webrat.txt --format html --out=#{out}/features_webrat.html --require features/support/webrat_env.rb"
-      t.feature_pattern = "features/features_plain/*.feature"
+      t.cucumber_opts = "--language es --format pretty --out=#{out}/features_plain.txt --format html --out=#{out}/features_plain.html --require features/support/env.rb --require features/support/plain.rb"
+      t.feature_pattern = "features/plain/*.feature"
       t.step_pattern = "features/step_definitions/*.rb"
     end
     Cucumber::Rake::Task.new(:selenium) do |t|
-      t.cucumber_opts = "--language es --format pretty --out=#{out}/features_selenium.txt --format html --out=#{out}/features_selenium.html --require features/support/selenium_env.rb"
-      t.feature_pattern = "features/features_with_ajax/*.feature"
+      t.cucumber_opts = "--language es --format pretty --out=#{out}/features_enhanced.txt --format html --out=#{out}/features_enhanced.html --require features/support/env.rb --require features/support/enhanced.rb"
+      t.feature_pattern = "features/enhanced/*.feature"
       t.step_pattern = "features/step_definitions/*.rb"
     end
     task :all do
