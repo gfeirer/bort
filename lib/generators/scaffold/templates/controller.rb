@@ -1,12 +1,48 @@
 class <%= controller_class_name %>Controller < ApplicationController
 
+#  require_role ""
+
+#  Examples:
+#   require_role "admin", :only => [:new, :create, :suspend, :index, :activate_from_admin]
+#   require_role ["responsable de calidad", "auditor"]
+
+
 #  def self.custom_actions_options
 #    {}
 #  end
 
+#  Examples:
+#    def self.custom_actions_options
+#      {
+#        :cerrar => {:html_options => {:confirm => '¿Está seguro que desea cerrar la No conformidad?'}},
+#        :rechazar => {:html_options => {:confirm => '¿Está seguro que desea rechazar la No conformidad?'}}
+#      }
+#    end
+#    def self.custom_actions_options
+#      {
+#        :register => {:name => "Registrar"},
+#        :register_openid => {:name => "Registrar openid"},
+#        :activate => {:name => "Activar"},
+#        :suspend => {:name => "Desactivar"},
+#        :delete => {:name => "Borrar"},
+#        :unsuspend => {:name => "Reactivar"},
+#        :show => {:hide => true},
+#        :destroy => {:hide => true}
+#      }
+#    end
+
+
 #  def self.custom_actions_order
 #    []
 #  end
+
+# Examples:
+#    def self.custom_actions_order
+#      [
+#        :suspend
+#      ]
+#    end
+
 
   # GET /<%= table_name %>
   # GET /<%= table_name %>.xml
