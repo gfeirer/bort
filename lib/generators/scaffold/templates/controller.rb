@@ -1,6 +1,6 @@
 class <%= controller_class_name %>Controller < ApplicationController
 
-#  require_role ""
+  require_role "scaffold_role"
 
 #  Examples:
 #   require_role "admin", :only => [:new, :create, :suspend, :index, :activate_from_admin]
