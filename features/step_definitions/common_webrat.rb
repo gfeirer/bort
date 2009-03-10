@@ -5,7 +5,7 @@ Cuando /^pulso el botón "(.*)"$/ do |button|
   click_button(button)
 end
 
-Cuando /^pulso el (enlace|enlace-ajax|enlace-con-efectos) (.+)$/i do
+Cuando /^pulso el (enlace|enlace-ajax|enlace-con-efectos) "(.+)"$/i do
 |tipo, enlace|
  wait_for = case tipo.downcase
  when 'enlace-con-efectos' then :effects
@@ -43,7 +43,7 @@ Cuando /^adjunto el fichero "(.*)" a "(.*)" $/ do |path, field|
   attaches_file(field, path)
 end
 
-Cuando /^visito (.*)$/ do |page|
+Cuando /^visito "(.*)"$/ do |page|
   visit case page
   when "la portada"
     "/"
