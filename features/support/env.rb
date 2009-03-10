@@ -1,11 +1,14 @@
-# Sets up the Rails environment for Cucumber
-ENV["RAILS_ENV"] = "test"
+ENV["RAILS_ENV"] = "test" 
 require File.expand_path(File.dirname(__FILE__) + '/../../config/environment')
 require 'cucumber/rails/world'
-Cucumber::Rails.use_transactional_fixtures
-
+require 'cucumber/formatters/unicode'
 require 'webrat/rails'
-
-# Comment out the next two lines if you're not using RSpec's matchers (should / should_not) in your steps.
 require 'cucumber/rails/rspec'
-require 'webrat/rspec-rails'
+
+# this won't be needed in the next release
+module Cucumber::StepMethods
+  alias_method :Dado, :Given
+  alias_method :Cuando, :When
+  alias_method :Entonces, :Then
+end
+

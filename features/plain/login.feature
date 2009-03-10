@@ -8,12 +8,14 @@ Característica: Login
     Entonces debería ver "Login"
 
   Escenario: Login correcto
+    Dado que tengo una cuenta activa con nombre de usuario "pepito"
     Cuando visito la portada
-    Y me logeo
-    Entonces debería ver "Logged in successfully"
+    Y me logeo como "pepito"
+    Entonces debería ver "Sesión iniciada correctamente"
  
   Escenario: Nombre de usuario y contraseña incorrecta
+    Dado que tengo una cuenta activa con nombre de usuario "pepito"
     Cuando visito la portada
-    Y me logeo incorrectamente
-    Entonces debería ver "Couldn't log you in"
+    Y me logeo como "pepito" con contraseña errónea
+    Entonces debería ver "Nombre de usuario o contraseña incorrectos"
     
