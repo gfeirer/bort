@@ -22,12 +22,18 @@ module ActionsLinksHelper
 
       order.each do |action|
         if possible_actions_array.include?(action)
-          actions_links << action_link(controller, instance, action, options)
+          actions_links << action_link(controller, instance, action, options[action])
+          options.delete(action)
           possible_actions_array.delete(action)
         end
       end
 
       possible_actions_array.each do |action|
+        actions_links << action_link(controller, instance, action, options[action])
+        options.delete(action)
+      end
+
+      options.each  do |action, options|
         actions_links << action_link(controller, instance, action, options)
       end
 
@@ -50,9 +56,11 @@ module ActionsLinksHelper
 
     protected
     def action_link(controller, instance, action, options)
-      action_options = controller.action_options(action).merge(options[action] || {})
+      action_options = (controller.action_options(action) || {}).merge(options || {})
+      controller = action_options[:controller] if action_options[:controller]
+      action = action_options[:action] if action_options[:action]
 
-      if action_options[:hide].blank? && (controller.user_authorized_for?(current_user, {:action => action}, binding) rescue true)
+      if !action_options.blank? && action_options[:hide].blank? && (controller.user_authorized_for?(current_user, {:action => action}, binding) rescue true)
         link_to_name = action_options[:name] ? action_options[:name] : action.to_s.humanize
         default_link_to_options = {:controller => controller.controller_name, :action => action, :id => instance.id}
         link_to_options = action_options[:options] ? default_link_to_options.merge(action_options[:options]) : default_link_to_options
