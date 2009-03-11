@@ -8,6 +8,10 @@ module ActionsLinksSystem
       commons_options[action] ? commons_options[action].merge(custom_actions_options[action] || {}) : custom_actions_options[action] || {}
     end
 
+    def actions_options
+      commons_options.merge(custom_actions_options || {})
+    end
+
     def actions_order
       common_actions_order + custom_actions_order
     end

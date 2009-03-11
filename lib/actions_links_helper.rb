@@ -16,6 +16,8 @@ module ActionsLinksHelper
       possible_actions_array = instance.methods.include?("aasm_events_for_current_state") ? instance.aasm_events_for_current_state : []
       possible_actions_array += [:show, :edit, :destroy]
 
+      all_actions = controller.actions_options.merge(options)
+
       order = custom_order || controller.actions_order
 
       actions_links = []
@@ -23,17 +25,17 @@ module ActionsLinksHelper
       order.each do |action|
         if possible_actions_array.include?(action)
           actions_links << action_link(controller, instance, action, options[action])
-          options.delete(action)
+          all_actions.delete(action)
           possible_actions_array.delete(action)
         end
       end
 
       possible_actions_array.each do |action|
         actions_links << action_link(controller, instance, action, options[action])
-        options.delete(action)
+        all_actions.delete(action)
       end
 
-      options.each  do |action, options|
+      all_actions.each  do |action, options|
         actions_links << action_link(controller, instance, action, options)
       end
 
@@ -57,8 +59,8 @@ module ActionsLinksHelper
     protected
     def action_link(controller, instance, action, options)
       action_options = (controller.action_options(action) || {}).merge(options || {})
-      controller = action_options[:controller] if action_options[:controller]
-      action = action_options[:action] if action_options[:action]
+      controller = action_options[:options][:controller] if action_options[:controller]
+      action = action_options[:options][:action] if action_options[:action]
 
       if !action_options.blank? && action_options[:hide].blank? && (controller.user_authorized_for?(current_user, {:action => action}, binding) rescue true)
         link_to_name = action_options[:name] ? action_options[:name] : action.to_s.humanize
