@@ -36,7 +36,7 @@ module ActionsLinksHelper
       end
 
       all_actions.each  do |action, options|
-        actions_links << action_link(controller, instance, action, options)
+        actions_links << action_link(controller, instance, action, options) unless instance.class.methods.include?("aasm_events") && instance.class.aasm_events[action]
       end
 
       (actions_links + custom_links).compact.reverse
@@ -62,7 +62,7 @@ module ActionsLinksHelper
       controller = action_options[:options][:controller] if action_options[:controller]
       action = action_options[:options][:action] if action_options[:action]
 
-      if !action_options.blank? && action_options[:hide].blank? && (controller.user_authorized_for?(current_user, {:action => action}, binding) rescue true)
+      if !action_options.blank? && action_options[:hide].blank? && (!controller.methods.include?("user_authorized_for?") || controller.user_authorized_for?(current_user, {:action => action}, binding))
         link_to_name = action_options[:name] ? action_options[:name] : action.to_s.humanize
         default_link_to_options = {:controller => controller.controller_name, :action => action, :id => instance.id}
         link_to_options = action_options[:options] ? default_link_to_options.merge(action_options[:options]) : default_link_to_options
