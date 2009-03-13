@@ -1,5 +1,5 @@
 <%%#= jquery_datepickers ["audit_plan_fecha_prevista"] %>
-<h1>Nuevo <%= singular_name %></h1>
+<%%= title "Nuevo <%= singular_name %>" %>
 
 <%% form_for(@<%= singular_name %>, :html => {:class => "form"}) do |f| %>
   <%%= f.error_messages %>
