@@ -28,6 +28,8 @@ module ActionsLinksSystem
 
     def commons_options
       {
+        :index => {:name => "Volver al listado", :hide => true, :options => {:id => nil}},
+        :new => {:name => "Nuevo", :hide => true, :options => {:id => nil}},
         :show => {:name =>"Mostrar"},
         :edit => {:name => "Editar"},
         :destroy => {:name => "Borrar", :html_options => {:method => :delete, :confirm => '¿Está seguro que desea borrar?'}}
