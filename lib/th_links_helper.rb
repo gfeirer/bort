@@ -20,7 +20,7 @@ module ThLinksHelper
       end
       if column_name
         th += ">"
-        th += link_to title+image_column_order_tag, {:controller => controller.controller_name, :action => :index, :order => ((current_order == column_name.to_s && (column_name.to_s + " DESC")) || column_name.to_s)}
+        th += link_to title+image_column_order_tag, {:controller => controller.controller_name, :action => controller.action_name, :order => ((current_order == column_name.to_s && (column_name.to_s + " DESC")) || column_name.to_s)}
         th += "</th>"
       else
         th += " />"
