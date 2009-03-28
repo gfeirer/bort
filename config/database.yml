@@ -28,21 +28,6 @@ test:
   # password:
   # pool: 5
  
-selenium:
-  # Sqlite Settings
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
-
-  # Mysql Settings
-  # adapter: mysql
-  # encoding: utf8
-  # database: bort_test
-  # username: root
-  # password:
-  # pool: 5
-  
 staging:
   # Sqlite Settings
   adapter: sqlite3
