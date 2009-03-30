@@ -34,10 +34,10 @@ Rails::Initializer.run do |config|
   config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"
 
   # These cause problems with irb. Left in for reference
-  config.gem 'rspec-rails', :lib => false, :version => '1.1.12'
-  config.gem 'rspec', :lib => false, :version => '1.1.12'
-  config.gem 'cucumber', :lib => false, :version => '0.1.16'
-  config.gem 'webrat', :lib => false, :version => '0.4.2'
+  #config.gem 'rspec-rails', :lib => false, :version => '1.1.12'
+  #config.gem 'rspec', :lib => false, :version => '1.1.12'
+  #config.gem 'cucumber', :lib => false, :version => '0.2.2'
+  #config.gem 'webrat', :lib => false, :version => '0.4.2'
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
